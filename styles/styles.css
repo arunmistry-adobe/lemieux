@@ -130,6 +130,19 @@
   --nav-height: 6.4rem;
 }
 
+/* LeMieux brand tokens */
+:root {
+  --lemieux-sage: #4a5c4e;
+  --lemieux-sage-light: #6b7f6f;
+  --lemieux-cream: #f5f0e8;
+  --lemieux-charcoal: #2c2c2c;
+  --lemieux-gold: #b8960c;
+  --color-brand-300: var(--lemieux-sage-light);
+  --color-brand-500: var(--lemieux-sage);
+  --color-brand-600: #3a4a3e;
+  --color-brand-700: #2c3830;
+}
+
 /* fallback font */
 @font-face {
   font-family: adobe-clean;

@@ -1,0 +1,38 @@
+.announcement-bar-container {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.announcement-bar-container .announcement-bar-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+.announcement-bar {
+  background-color: var(--lemieux-sage, #4a5c4e);
+  color: #fff;
+  text-align: center;
+  padding: 10px var(--spacing-medium);
+  font: var(--type-details-caption-1-font);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.announcement-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xsmall);
+  flex-wrap: wrap;
+}
+
+.announcement-bar-text {
+  font-weight: 600;
+}
+
+.announcement-bar-countdown {
+  font-weight: 400;
+  opacity: 0.9;
+}

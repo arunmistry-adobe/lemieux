@@ -67,8 +67,8 @@ function isProductPrerendered() {
 // Function to update the Add to Cart button text
 function updateAddToCartButtonText(addToCartInstance, inCart, labels) {
   const buttonText = inCart
-    ? labels.Global?.UpdateProductInCart
-    : labels.Global?.AddProductToCart;
+    ? (labels.Global?.UpdateProductInCart || 'Update Bag')
+    : (labels.Global?.AddProductToCart || 'Add To Bag');
   if (addToCartInstance) {
     addToCartInstance.setProps((prev) => ({
       ...prev,

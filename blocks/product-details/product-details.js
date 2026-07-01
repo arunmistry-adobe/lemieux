@@ -423,7 +423,7 @@ export default async function decorate(block) {
 
   // Configuration – Button - Add to Cart
   const addToCart = await UI.render(Button, {
-    children: labels.Global?.AddProductToCart,
+    children: labels.Global?.AddProductToCart || 'Add To Bag',
     onClick: async () => {
       const buttonActionText = isUpdateMode
         ? labels.Global?.UpdatingInCart

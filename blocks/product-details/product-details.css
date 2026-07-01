@@ -203,42 +203,26 @@
   flex-shrink: 0;
 }
 
-/* Add to Bag button — full width, charcoal */
+/* Add to Bag button — override dropin design tokens so all states stay correct */
+.product-details__buttons__add-to-cart {
+  --color-brand-500: var(--lemieux-charcoal, #2c2c2c);
+  --color-brand-600: var(--lemieux-sage, #4a5c4e);
+  --color-neutral-50: #fff;
+  --color-neutral-300: var(--lemieux-charcoal, #2c2c2c);
+  --color-neutral-500: rgba(255, 255, 255, 0.65);
+}
+
 .product-details__buttons__add-to-cart .dropin-button,
 .product-details__buttons__add-to-cart button {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
   width: 100% !important;
   min-height: 54px !important;
   padding: 16px 24px !important;
-  background: var(--lemieux-charcoal, #2c2c2c) !important;
-  color: #fff !important;
-  fill: #fff !important;
-  border: none !important;
   border-radius: 2px !important;
-  font-family: inherit !important;
   font-size: 1.3rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  text-align: center !important;
-  cursor: pointer !important;
-  transition: background 0.2s !important;
   box-sizing: border-box !important;
-}
-
-.product-details__buttons__add-to-cart .dropin-button:hover,
-.product-details__buttons__add-to-cart button:hover {
-  background: var(--lemieux-sage, #4a5c4e) !important;
-}
-
-/* Keep text white in disabled/loading state after click */
-.product-details__buttons__add-to-cart button.dropin-button.dropin-button--primary--disabled,
-.product-details__buttons__add-to-cart .dropin-button:disabled {
-  background: var(--lemieux-charcoal, #2c2c2c) !important;
-  color: rgb(255 255 255 / 60%) !important;
-  opacity: 1 !important;
 }
 
 /* Hide cart icon inside the button */

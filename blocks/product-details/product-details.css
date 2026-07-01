@@ -110,29 +110,65 @@
   display: block;
 }
 
-/* Colour swatches — circular */
-.pdp-swatches__options input[type="radio"] + label,
-.pdp-swatches__options label {
-  width: 32px;
-  height: 32px;
-  border-radius: 50% !important;
+/* ── Colour swatches — squares (dropin-color-swatch) ── */
+.dropin-color-swatch {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 2px !important;
   border: 2px solid transparent !important;
   cursor: pointer;
-  transition: border-color 0.2s, outline 0.2s;
-  display: inline-block;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none !important;
 }
 
-.pdp-swatches__options input[type="radio"]:checked + label,
-.pdp-swatches__options label:hover {
+.dropin-color-swatch--selected,
+.dropin-color-swatch:hover {
   border-color: var(--lemieux-charcoal, #2c2c2c) !important;
-  outline: 2px solid #fff;
-  outline-offset: -5px;
+  box-shadow: 0 0 0 2px #fff inset;
 }
 
-/* Size / text swatches */
+/* ── Text swatches (size, fit) — full-width pill row ── */
+.pdp-swatches__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+}
+
+.dropin-text-swatch {
+  flex: 1 1 auto;
+  min-width: 48px;
+  padding: 10px 16px;
+  border: 1.5px solid var(--color-neutral-400) !important;
+  border-radius: 2px !important;
+  background: #fff;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  text-align: center;
+  color: var(--lemieux-charcoal, #2c2c2c) !important;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  box-sizing: border-box;
+}
+
+.dropin-text-swatch--selected,
+.dropin-text-swatch:hover {
+  border-color: var(--lemieux-charcoal, #2c2c2c) !important;
+  background: var(--lemieux-charcoal, #2c2c2c) !important;
+  color: #fff !important;
+}
+
+.dropin-text-swatch--disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* Legacy checkbox swatches fallback */
 .pdp-swatches__options--checkboxes label {
   min-width: 48px;
-  padding: 8px 16px;
+  padding: 10px 16px;
   border: 1.5px solid var(--color-neutral-400) !important;
   border-radius: 2px !important;
   background: #fff;

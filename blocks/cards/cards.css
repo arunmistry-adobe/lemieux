@@ -29,3 +29,65 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
+/* ── Colour Swatches variant ── */
+.cards.colour-swatches > ul {
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-small);
+}
+
+.cards.colour-swatches > ul > li {
+  border: none;
+  background: none;
+  text-align: center;
+}
+
+.cards.colour-swatches > ul > li img {
+  aspect-ratio: 1 / 1;
+  border-radius: 2px;
+}
+
+.cards.colour-swatches .cards-card-image {
+  overflow: hidden;
+}
+
+.cards.colour-swatches .cards-card-image img {
+  transition: transform 0.3s ease;
+}
+
+.cards.colour-swatches > ul > li:hover .cards-card-image img {
+  transform: scale(1.05);
+}
+
+.cards.colour-swatches .cards-card-body {
+  margin: var(--spacing-xsmall) 0 0;
+}
+
+.cards.colour-swatches .cards-card-body p {
+  margin: 0;
+  font: var(--type-details-overline-font);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-neutral-800);
+}
+
+.cards.colour-swatches .cards-card-body a {
+  font: var(--type-details-overline-font);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-neutral-800);
+  text-decoration: none;
+}
+
+.cards.colour-swatches .cards-card-body a:hover {
+  color: var(--lemieux-sage);
+  text-decoration: underline;
+}
+
+@media (min-width: 600px) {
+  .cards.colour-swatches > ul {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

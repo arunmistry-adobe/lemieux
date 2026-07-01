@@ -283,6 +283,18 @@
   transition: stroke 0.2s, fill 0.2s;
 }
 
+/* ── Quantity — full width ── */
+.product-details__quantity {
+  width: 100%;
+}
+
+.product-details__quantity .dropin-input-container,
+.product-details__quantity .dropin-field,
+.product-details__quantity input[type="number"] {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
 /* ── Short Description ── */
 .pdp-product__short_description {
   font-size: 1.4rem;

@@ -609,15 +609,7 @@ header .nav-search-input .search_autocomplete .popover-container {
 }
 
 .overlay {
-  background-color: rgb(0 0 0 / 50%) !important;
   display: none;
-  inset: 0;
-  position: fixed;
-  z-index: 2;
-}
-
-.overlay.show {
-  display: block;
 }
 
 @media (max-width: 899px) {

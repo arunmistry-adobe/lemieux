@@ -144,17 +144,23 @@ await initializeDropin(async () => {
     },
     ProductOptions: {
       optionsTransformer: (options) => options?.map((opt) => {
-        // Only transform dropdown options whose label starts with "col" (Colour/Color)
-        if (opt.type !== 'dropdown' || !opt.label?.toLowerCase().startsWith('col')) return opt;
-        const items = opt.items?.map((item) => {
-          const key = item.label?.toLowerCase().trim().replace(/\s+/g, '');
-          // Try full name, then first word (e.g. "Navy Blue" → "navy")
-          const hex = COLOUR_HEX_MAP[key]
-            || COLOUR_HEX_MAP[key.split(' ')[0]]
-            || '#cccccc';
-          return { ...item, value: hex };
-        });
-        return { ...opt, type: 'color', items };
+        if (opt.type !== 'dropdown') return opt;
+        const labelLower = opt.label?.toLowerCase() ?? '';
+        // Colour → visual colour swatches with hex values
+        if (labelLower.startsWith('col')) {
+          const items = opt.items?.map((item) => {
+            const key = item.label?.toLowerCase().trim().replace(/\s+/g, '');
+            const hex = COLOUR_HEX_MAP[key] || COLOUR_HEX_MAP[key.split(' ')[0]] || '#cccccc';
+            return { ...item, value: hex };
+          });
+          return { ...opt, type: 'color', items };
+        }
+        // All other dropdowns (size, fit, etc.) → text pill swatches
+        return {
+          ...opt,
+          type: 'text',
+          items: opt.items?.map((item) => ({ ...item, value: item.label })),
+        };
       }),
     },
   };

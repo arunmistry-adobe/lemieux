@@ -125,9 +125,37 @@ await initializeDropin(async () => {
     },
   };
 
+  // Colour name → hex map for converting dropdown to visual colour swatches
+  const COLOUR_HEX_MAP = {
+    navy: '#1a2744', black: '#000000', white: '#ffffff', grey: '#808080',
+    gray: '#808080', sage: '#4a5c4e', green: '#2d6a4f', pink: '#f4b8c8',
+    red: '#c0392b', blue: '#2980b9', brown: '#6b4423', tan: '#d2b48c',
+    mink: '#c4a882', gold: '#c9a227', silver: '#c0c0c0', purple: '#6c3483',
+    burgundy: '#800020', coral: '#ff7f50', cream: '#fffdd0', camel: '#c19a6b',
+    sand: '#c2b280', mustard: '#ffdb58', teal: '#008080', charcoal: '#2c2c2c',
+    stone: '#b2a99a', chocolate: '#3d1c02', lilac: '#c8a2c8', mint: '#98ff98',
+    blush: '#ffb7c5', aqua: '#00ffff', orange: '#ff8c00', lemon: '#fff44f',
+    champagne: '#f7e7ce', denim: '#1560bd', electric: '#7df9ff',
+  };
+
   const models = {
     ProductDetails: {
       initialData: { ...product },
+    },
+    ProductOptions: {
+      optionsTransformer: (options) => options?.map((opt) => {
+        // Only transform dropdown options whose label starts with "col" (Colour/Color)
+        if (opt.type !== 'dropdown' || !opt.label?.toLowerCase().startsWith('col')) return opt;
+        const items = opt.items?.map((item) => {
+          const key = item.label?.toLowerCase().trim().replace(/\s+/g, '');
+          // Try full name, then first word (e.g. "Navy Blue" → "navy")
+          const hex = COLOUR_HEX_MAP[key]
+            || COLOUR_HEX_MAP[key.split(' ')[0]]
+            || '#cccccc';
+          return { ...item, value: hex };
+        });
+        return { ...opt, type: 'color', items };
+      }),
     },
   };
 

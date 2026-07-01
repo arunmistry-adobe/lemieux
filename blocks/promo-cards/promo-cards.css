@@ -1,7 +1,7 @@
 .promo-cards-container .promo-cards-wrapper {
   max-width: unset;
   padding: 0;
-  margin: 0;
+  margin: 0 0 1cm;
 }
 
 .promo-cards > ul {

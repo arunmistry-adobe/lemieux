@@ -110,21 +110,17 @@
   display: block;
 }
 
-/* ── Colour swatches — squares (dropin-color-swatch) ── */
-.dropin-color-swatch {
+/* ── Colour swatches — squares ── */
+/* The dropin injects border-radius:50% on __span — override it here */
+.dropin-color-swatch__container .dropin-color-swatch__span {
+  border-radius: 2px !important;
   width: 36px !important;
   height: 36px !important;
-  border-radius: 2px !important;
-  border: 2px solid transparent !important;
-  cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  outline: none !important;
 }
 
-.dropin-color-swatch--selected,
-.dropin-color-swatch:hover {
-  border-color: var(--lemieux-charcoal, #2c2c2c) !important;
-  box-shadow: 0 0 0 2px #fff inset;
+.dropin-color-swatch--selected .dropin-color-swatch__span,
+.dropin-color-swatch:hover .dropin-color-swatch__span {
+  box-shadow: 0 0 0 2px #fff inset, 0 0 0 3px var(--lemieux-charcoal, #2c2c2c) !important;
 }
 
 /* ── Text swatches (size, fit) — full-width pill row ── */

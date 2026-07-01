@@ -233,6 +233,14 @@
   background: var(--lemieux-sage, #4a5c4e) !important;
 }
 
+/* Keep text white in disabled/loading state after click */
+.product-details__buttons__add-to-cart button.dropin-button.dropin-button--primary--disabled,
+.product-details__buttons__add-to-cart .dropin-button:disabled {
+  background: var(--lemieux-charcoal, #2c2c2c) !important;
+  color: rgb(255 255 255 / 60%) !important;
+  opacity: 1 !important;
+}
+
 /* Hide cart icon inside the button */
 .product-details__buttons__add-to-cart .dropin-button-icon {
   display: none !important;

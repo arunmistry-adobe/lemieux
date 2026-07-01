@@ -165,6 +165,17 @@ header nav .nav-brand img {
   height: auto;
 }
 
+header nav .nav-brand a {
+  display: inline-block;
+  width: 180px;
+  height: 44px;
+  background: url('/icons/lemieux-logo.svg') no-repeat left center;
+  background-size: contain;
+  font-size: 0;
+  color: transparent;
+  text-indent: -9999px;
+}
+
 li.nav-drop img {
   max-width: var(--desktop-item-panel-max-width);
   width: 100%;

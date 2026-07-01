@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="220" height="48" role="img" aria-label="LeMieux">
+  <!-- Horseshoe mark -->
+  <g transform="translate(8, 6)">
+    <path d="M17 0 C8 0 1 7 1 16 C1 22 4 27 9 30 L9 34 L25 34 L25 30 C30 27 33 22 33 16 C33 7 26 0 17 0 Z
+             M17 4 C23.6 4 29 9.4 29 16 C29 20.6 26.6 24.6 23 26.8 L23 30 L11 30 L11 26.8 C7.4 24.6 5 20.6 5 16 C5 9.4 10.4 4 17 4 Z"
+          fill="#4a5c4e"/>
+    <!-- Nail holes -->
+    <circle cx="9"  cy="31" r="1.8" fill="#4a5c4e"/>
+    <circle cx="25" cy="31" r="1.8" fill="#4a5c4e"/>
+    <circle cx="6"  cy="22" r="1.8" fill="#4a5c4e"/>
+    <circle cx="28" cy="22" r="1.8" fill="#4a5c4e"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="52" y="33"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="26"
+        font-weight="400"
+        letter-spacing="2"
+        fill="#2c2c2c">LeMieux</text>
+</svg>

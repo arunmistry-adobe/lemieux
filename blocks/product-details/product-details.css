@@ -206,7 +206,9 @@
 /* Add to Bag button — full width, charcoal */
 .product-details__buttons__add-to-cart .dropin-button,
 .product-details__buttons__add-to-cart button {
-  display: block !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   width: 100% !important;
   min-height: 54px !important;
   padding: 16px 24px !important;

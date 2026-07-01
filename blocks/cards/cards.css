@@ -31,6 +31,10 @@
 }
 
 /* ── Colour Swatches variant ── */
+.cards.colour-swatches {
+  margin-bottom: 1cm;
+}
+
 .cards.colour-swatches > ul {
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;

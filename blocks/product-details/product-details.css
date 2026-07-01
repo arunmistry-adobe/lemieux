@@ -207,36 +207,37 @@
   flex-shrink: 0;
 }
 
-/* Add to Bag button — full width, charcoal, no icon */
-.product-details__buttons__add-to-cart button,
-.product-details__buttons__add-to-cart .dropin-button {
-  width: 100%;
-  padding: 16px 24px;
-  background: var(--lemieux-charcoal, #2c2c2c);
+/* Add to Bag button — full width, charcoal */
+.product-details__buttons__add-to-cart .dropin-button,
+.product-details__buttons__add-to-cart button {
+  display: block !important;
+  width: 100% !important;
+  min-height: 54px !important;
+  padding: 16px 24px !important;
+  background: var(--lemieux-charcoal, #2c2c2c) !important;
   color: #fff !important;
-  border: none;
-  border-radius: 2px;
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
+  fill: #fff !important;
+  border: none !important;
+  border-radius: 2px !important;
+  font-family: inherit !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  transition: background 0.2s !important;
+  box-sizing: border-box !important;
 }
 
-.product-details__buttons__add-to-cart button:hover,
-.product-details__buttons__add-to-cart .dropin-button:hover {
-  background: var(--lemieux-sage, #4a5c4e);
+.product-details__buttons__add-to-cart .dropin-button:hover,
+.product-details__buttons__add-to-cart button:hover {
+  background: var(--lemieux-sage, #4a5c4e) !important;
 }
 
-/* Hide any remaining cart icon */
-.product-details__buttons__add-to-cart .dropin-button__icon,
-.product-details__buttons__add-to-cart button svg {
-  display: none;
+/* Hide cart icon inside the button */
+.product-details__buttons__add-to-cart .dropin-button-icon {
+  display: none !important;
 }
 
 /* Wishlist heart button — borderless, charcoal outline heart */

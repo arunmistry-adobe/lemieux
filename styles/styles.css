@@ -471,12 +471,6 @@ main img {
 /* sections */
 main > .section {
   margin: var(--spacing-xbig) 0;
-  padding-top: 1px; /* prevents margin collapse on full-bleed children */
-}
-
-main > .section + .section {
-  margin-top: 0;
-  padding-top: var(--spacing-xbig);
 }
 
 .section:empty {

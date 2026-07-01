@@ -154,18 +154,26 @@
 
 /* ── Add to Bag / Buttons ── */
 .product-details__buttons {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   gap: var(--spacing-xsmall);
-  grid-auto-rows: max-content;
+  align-items: stretch;
 }
 
-.product-details__buttons > div {
-  display: contents;
+.product-details__buttons__add-to-cart {
+  flex: 1;
 }
 
-.pdp-product__actions button.pdp-product__add-to-cart,
-[data-slot="AddToCart"] button {
+.product-details__buttons__add-to-wishlist {
+  flex-shrink: 0;
+}
+
+.product-details__buttons__add-to-req-list {
+  flex-shrink: 0;
+}
+
+/* Add to Bag button — full width, charcoal, no icon */
+.product-details__buttons__add-to-cart button,
+.product-details__buttons__add-to-cart .dropin-button {
   width: 100%;
   padding: 16px 24px;
   background: var(--lemieux-charcoal, #2c2c2c);
@@ -178,11 +186,64 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
 }
 
-.pdp-product__actions button.pdp-product__add-to-cart:hover,
-[data-slot="AddToCart"] button:hover {
+.product-details__buttons__add-to-cart button:hover,
+.product-details__buttons__add-to-cart .dropin-button:hover {
   background: var(--lemieux-sage, #4a5c4e);
+}
+
+/* Hide any remaining cart icon */
+.product-details__buttons__add-to-cart .dropin-button__icon,
+.product-details__buttons__add-to-cart button svg {
+  display: none;
+}
+
+/* Wishlist heart button — borderless, charcoal outline heart */
+.product-details__buttons__add-to-wishlist button,
+.product-details__buttons__add-to-wishlist .dropin-button {
+  width: 52px;
+  height: 100%;
+  min-height: 52px;
+  padding: 0;
+  background: transparent !important;
+  border: 1.5px solid var(--lemieux-charcoal, #2c2c2c) !important;
+  border-radius: 2px;
+  color: var(--lemieux-charcoal, #2c2c2c) !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.product-details__buttons__add-to-wishlist button:hover,
+.product-details__buttons__add-to-wishlist .dropin-button:hover {
+  background: var(--lemieux-charcoal, #2c2c2c) !important;
+  color: #fff !important;
+}
+
+.product-details__buttons__add-to-wishlist button:hover svg,
+.product-details__buttons__add-to-wishlist .dropin-button:hover svg {
+  stroke: #fff;
+  fill: #fff;
+}
+
+/* Hide wishlist button text label, keep icon only */
+.product-details__buttons__add-to-wishlist .dropin-button__label {
+  display: none;
+}
+
+.product-details__buttons__add-to-wishlist svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--lemieux-charcoal, #2c2c2c);
+  fill: none;
+  transition: stroke 0.2s, fill 0.2s;
 }
 
 /* ── Short Description ── */

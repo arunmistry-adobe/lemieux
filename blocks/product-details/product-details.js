@@ -506,10 +506,28 @@ export default async function decorate(block) {
     },
   })($addToCart);
 
+  // Reorder swatches so Colour appears before Size
+  const reorderSwatchFields = () => {
+    const container = $options.querySelector('.pdp-swatches');
+    if (!container) return;
+    const fields = [...container.querySelectorAll(':scope > .pdp-swatches__field')];
+    if (fields.length < 2) return;
+    fields.sort((a, b) => {
+      const labelA = a.querySelector('.pdp-swatches__field__label')?.textContent?.trim().toLowerCase() ?? '';
+      const labelB = b.querySelector('.pdp-swatches__field__label')?.textContent?.trim().toLowerCase() ?? '';
+      const isColourA = labelA.startsWith('col');
+      const isColourB = labelB.startsWith('col');
+      if (isColourA && !isColourB) return -1;
+      if (!isColourA && isColourB) return 1;
+      return 0;
+    }).forEach((el) => container.appendChild(el));
+  };
+
   // Lifecycle Events
   events.on('pdp/data', (data) => {
     isOutOfStock = data?.inStock === false;
     addToCart.setProps((prev) => ({ ...prev, disabled: isOutOfStock }));
+    setTimeout(reorderSwatchFields, 150);
   }, { eager: true });
 
   events.on('pdp/valid', (valid) => {

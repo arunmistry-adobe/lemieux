@@ -201,7 +201,15 @@ header nav .nav-sections ul {
 header nav .nav-sections ul>li,
 header nav .nav-sections ul>li>a {
   font: var(--type-body-2-strong-font);
-  letter-spacing: var(--type-body-2-strong-letter-spacing);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: var(--lemieux-charcoal, #2c2c2c);
+}
+
+header nav .nav-sections ul>li>a:hover {
+  color: var(--lemieux-sage, #4a5c4e);
+  text-decoration: none;
 }
 
 header nav .nav-brand a:hover {

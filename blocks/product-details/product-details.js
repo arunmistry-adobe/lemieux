@@ -568,11 +568,14 @@ export default async function decorate(block) {
     isOutOfStock = data?.inStock === false;
     addToCart.setProps((prev) => ({ ...prev, disabled: isOutOfStock }));
 
-    // Store master image list and find the colour option ID
     if (data?.images?.length) allProductImages = data.images;
-    if (data?.options && !colourOptionId) {
-      const colOpt = data.options.find((o) => o.label?.toLowerCase().startsWith('col'));
-      if (colOpt) colourOptionId = colOpt.id;
+
+    // Fetch all variants with images once so we can filter by swatch selection
+    if (!variantsFetched && data?.sku) {
+      variantsFetched = true;
+      getProductVariants(data.sku).then((variants) => {
+        allVariants = variants;
+      });
     }
 
     buildDesktopImageGrid(allProductImages);

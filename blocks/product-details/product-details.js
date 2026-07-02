@@ -612,6 +612,12 @@ export default async function decorate(block) {
   events.on('pdp/values', async () => {
     const configValues = pdpApi.getProductConfigurationValues();
 
+    // Re-render desktop gallery filtered by the selected colour
+    if (colourOptionId && allProductImages.length) {
+      const colourLabel = configValues?.[colourOptionId]?.label ?? null;
+      buildDesktopImageGrid(allProductImages, colourLabel);
+    }
+
     // Check URL parameter for empty optionsUIDs
     const urlOptionsUIDs = urlParams.get('optionsUIDs');
 

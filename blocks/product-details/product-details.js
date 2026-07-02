@@ -615,11 +615,12 @@ export default async function decorate(block) {
       );
       const hasItems = totalQuantity > 0;
 
+      const addToBagLabel = labels.Global?.AddProductToCart || 'Add To Bag';
       gridOrderingAddToCartButton.setProps((prev) => ({
         ...prev,
         children: hasItems
-          ? `${labels.Global?.AddProductToCart} (${totalQuantity})`
-          : labels.Global?.AddProductToCart,
+          ? `${addToBagLabel} (${totalQuantity})`
+          : addToBagLabel,
         disabled: !hasItems,
       }));
     }

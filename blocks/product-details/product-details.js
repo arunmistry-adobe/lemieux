@@ -526,6 +526,7 @@ export default async function decorate(block) {
   let allProductImages = [];
   let allVariants = [];
   let variantsFetched = false;
+  let currentSelectedUIDs = [];
 
   // Build 2-column desktop image grid (replaces dropin carousel in left column)
   const buildDesktopImageGrid = (images) => {

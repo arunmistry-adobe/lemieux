@@ -70,7 +70,7 @@
 }
 
 .pdp-image-grid__item:first-child img {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 2 / 3;
 }
 
 /* ── Product Header ── */

@@ -30,7 +30,7 @@
   display: none;
 }
 
-/* ── Gallery ── */
+/* ── Mobile gallery (carousel stays as-is) ── */
 .product-details__gallery .pdp-carousel {
   max-height: 70vh;
 }
@@ -42,6 +42,35 @@
 .product-details__gallery .pdp-overlay__content .pdp-carousel,
 .product-details__gallery .pdp-overlay__content .pdp-carousel--thumbnailsRow {
   max-height: unset;
+}
+
+/* ── Desktop 2-column image grid (left column) ── */
+.pdp-image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.pdp-image-grid__item {
+  overflow: hidden;
+  background: var(--color-neutral-100);
+}
+
+/* First image spans full width */
+.pdp-image-grid__item:first-child {
+  grid-column: 1 / -1;
+}
+
+.pdp-image-grid__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 4 / 5;
+}
+
+.pdp-image-grid__item:first-child img {
+  aspect-ratio: 3 / 2;
 }
 
 /* ── Product Header ── */

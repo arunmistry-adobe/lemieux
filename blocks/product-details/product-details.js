@@ -599,10 +599,7 @@ export default async function decorate(block) {
   events.on('pdp/values', async () => {
     const configValues = pdpApi.getProductConfigurationValues();
 
-    // Track current selection and filter desktop gallery
-    currentSelectedUIDs = configValues?.optionsUIDs ?? [];
-    const variantImages = getImagesForSelection(currentSelectedUIDs);
-    buildDesktopImageGrid(variantImages ?? allProductImages);
+    // Gallery is updated by pdp/data which AEM Assets populates per colour selection
 
     // Check URL parameter for empty optionsUIDs
     const urlOptionsUIDs = urlParams.get('optionsUIDs');

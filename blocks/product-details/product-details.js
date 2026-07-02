@@ -549,22 +549,11 @@ export default async function decorate(block) {
     isOutOfStock = data?.inStock === false;
     addToCart.setProps((prev) => ({ ...prev, disabled: isOutOfStock }));
 
-    if (data?.images?.length) allProductImages = data.images;
-
-    // Fetch all variants with images once so we can filter by swatch selection
-    if (!variantsFetched && data?.sku) {
-      variantsFetched = true;
-      getProductVariants(data.sku).then((variants) => {
-        allVariants = variants;
-        // Re-render now that variants are loaded, respecting current selection
-        const imgs = getImagesForSelection(currentSelectedUIDs);
-        buildDesktopImageGrid(imgs ?? allProductImages);
-      });
+    // AEM Assets delivers the correct colour-filtered images via pdp/data
+    if (data?.images?.length) {
+      allProductImages = data.images;
+      buildDesktopImageGrid(allProductImages);
     }
-
-    // Always respect the current selection when re-rendering
-    const imgs = getImagesForSelection(currentSelectedUIDs);
-    buildDesktopImageGrid(imgs ?? allProductImages);
     setTimeout(reorderSwatchFields, 150);
   }, { eager: true });
 

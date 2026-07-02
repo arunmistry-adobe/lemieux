@@ -612,9 +612,15 @@ export default async function decorate(block) {
   events.on('pdp/values', async () => {
     const configValues = pdpApi.getProductConfigurationValues();
 
+    // Debug: log configValues shape and image URLs
+    console.log('[PDP] colourOptionId:', colourOptionId);
+    console.log('[PDP] configValues:', JSON.stringify(configValues));
+    console.log('[PDP] image URLs:', allProductImages.map((i) => i.url));
+
     // Re-render desktop gallery filtered by the selected colour
     if (colourOptionId && allProductImages.length) {
       const colourLabel = configValues?.[colourOptionId]?.label ?? null;
+      console.log('[PDP] selected colourLabel:', colourLabel);
       buildDesktopImageGrid(allProductImages, colourLabel);
     }
 

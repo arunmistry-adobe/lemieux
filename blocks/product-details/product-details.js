@@ -522,11 +522,8 @@ export default async function decorate(block) {
     }).forEach((el) => container.appendChild(el));
   };
 
-  // State for variant-based gallery
+  // State for desktop gallery
   let allProductImages = [];
-  let allVariants = [];
-  let variantsFetched = false;
-  let currentSelectedUIDs = [];
 
   // Build 2-column desktop image grid (replaces dropin carousel in left column)
   const buildDesktopImageGrid = (images) => {
@@ -545,23 +542,6 @@ export default async function decorate(block) {
       item.appendChild(picture);
       $gallery.appendChild(item);
     });
-  };
-
-  // Return images for variants whose selections include ALL the given UIDs
-  const getImagesForSelection = (selectedUIDs) => {
-    if (!selectedUIDs?.length || !allVariants.length) return null;
-    const matching = allVariants.filter(
-      (v) => selectedUIDs.every((uid) => v.selections?.includes(uid)),
-    );
-    if (!matching.length) return null;
-    const seen = new Set();
-    return matching
-      .flatMap((v) => v.product?.images ?? [])
-      .filter((img) => {
-        if (seen.has(img.url)) return false;
-        seen.add(img.url);
-        return true;
-      });
   };
 
   // Lifecycle Events

@@ -522,30 +522,21 @@ export default async function decorate(block) {
     }).forEach((el) => container.appendChild(el));
   };
 
-  // State for colour-filtered gallery
+  // State for variant-based gallery
   let allProductImages = [];
-  let colourOptionId = null;
+  let allVariants = [];
+  let variantsFetched = false;
 
   // Build 2-column desktop image grid (replaces dropin carousel in left column)
-  const buildDesktopImageGrid = (images, colourLabel = null) => {
+  const buildDesktopImageGrid = (images) => {
     if (!images?.length) return;
-
-    let filtered = images.filter((img) => !img.roles?.includes('hide_from_pdp'));
-
-    // Filter by colour name in the image URL when a colour is selected
-    if (colourLabel) {
-      const key = colourLabel.toLowerCase().trim();
-      const byColour = filtered.filter((img) => img.url?.toLowerCase().includes(key));
-      if (byColour.length > 0) filtered = byColour;
-    }
-
     $gallery.innerHTML = '';
     $gallery.classList.add('pdp-image-grid');
-    filtered.forEach((img, i) => {
+    images.forEach((img, i) => {
       const item = document.createElement('div');
       item.className = 'pdp-image-grid__item';
       const picture = document.createElement('img');
-      picture.src = img.url?.replace(/^https?:/, '');
+      picture.src = (img.url ?? img).replace(/^https?:/, '');
       picture.alt = img.label || '';
       picture.loading = i < 2 ? 'eager' : 'lazy';
       picture.width = 600;
@@ -553,6 +544,23 @@ export default async function decorate(block) {
       item.appendChild(picture);
       $gallery.appendChild(item);
     });
+  };
+
+  // Return images for variants whose selections include ALL the given UIDs
+  const getImagesForSelection = (selectedUIDs) => {
+    if (!selectedUIDs?.length || !allVariants.length) return null;
+    const matching = allVariants.filter(
+      (v) => selectedUIDs.every((uid) => v.selections?.includes(uid)),
+    );
+    if (!matching.length) return null;
+    const seen = new Set();
+    return matching
+      .flatMap((v) => v.product?.images ?? [])
+      .filter((img) => {
+        if (seen.has(img.url)) return false;
+        seen.add(img.url);
+        return true;
+      });
   };
 
   // Lifecycle Events

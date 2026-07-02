@@ -559,7 +559,15 @@ export default async function decorate(block) {
   events.on('pdp/data', (data) => {
     isOutOfStock = data?.inStock === false;
     addToCart.setProps((prev) => ({ ...prev, disabled: isOutOfStock }));
-    buildDesktopImageGrid(data?.images);
+
+    // Store master image list and find the colour option ID
+    if (data?.images?.length) allProductImages = data.images;
+    if (data?.options && !colourOptionId) {
+      const colOpt = data.options.find((o) => o.label?.toLowerCase().startsWith('col'));
+      if (colOpt) colourOptionId = colOpt.id;
+    }
+
+    buildDesktopImageGrid(allProductImages);
     setTimeout(reorderSwatchFields, 150);
   }, { eager: true });
 

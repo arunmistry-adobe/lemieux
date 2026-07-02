@@ -522,10 +522,32 @@ export default async function decorate(block) {
     }).forEach((el) => container.appendChild(el));
   };
 
+  // Build 2-column desktop image grid (replaces dropin carousel in left column)
+  const buildDesktopImageGrid = (images) => {
+    if (!images?.length) return;
+    $gallery.innerHTML = '';
+    $gallery.classList.add('pdp-image-grid');
+    images
+      .filter((img) => !img.roles?.includes('hide_from_pdp'))
+      .forEach((img, i) => {
+        const item = document.createElement('div');
+        item.className = 'pdp-image-grid__item';
+        const picture = document.createElement('img');
+        picture.src = img.url?.replace(/^https?:/, '');
+        picture.alt = img.label || '';
+        picture.loading = i < 2 ? 'eager' : 'lazy';
+        picture.width = 600;
+        picture.height = 750;
+        item.appendChild(picture);
+        $gallery.appendChild(item);
+      });
+  };
+
   // Lifecycle Events
   events.on('pdp/data', (data) => {
     isOutOfStock = data?.inStock === false;
     addToCart.setProps((prev) => ({ ...prev, disabled: isOutOfStock }));
+    buildDesktopImageGrid(data?.images);
     setTimeout(reorderSwatchFields, 150);
   }, { eager: true });
 

@@ -629,9 +629,9 @@ export default async function decorate(block) {
   events.on('pdp/values', async () => {
     const configValues = pdpApi.getProductConfigurationValues();
 
-    // Filter desktop gallery by selected variant images
-    const selectedUIDs = configValues?.optionsUIDs ?? [];
-    const variantImages = getImagesForSelection(selectedUIDs);
+    // Track current selection and filter desktop gallery
+    currentSelectedUIDs = configValues?.optionsUIDs ?? [];
+    const variantImages = getImagesForSelection(currentSelectedUIDs);
     buildDesktopImageGrid(variantImages ?? allProductImages);
 
     // Check URL parameter for empty optionsUIDs

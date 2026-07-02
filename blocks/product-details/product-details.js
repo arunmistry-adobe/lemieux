@@ -576,10 +576,15 @@ export default async function decorate(block) {
       variantsFetched = true;
       getProductVariants(data.sku).then((variants) => {
         allVariants = variants;
+        // Re-render now that variants are loaded, respecting current selection
+        const imgs = getImagesForSelection(currentSelectedUIDs);
+        buildDesktopImageGrid(imgs ?? allProductImages);
       });
     }
 
-    buildDesktopImageGrid(allProductImages);
+    // Always respect the current selection when re-rendering
+    const imgs = getImagesForSelection(currentSelectedUIDs);
+    buildDesktopImageGrid(imgs ?? allProductImages);
     setTimeout(reorderSwatchFields, 150);
   }, { eager: true });
 

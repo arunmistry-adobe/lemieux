@@ -56,21 +56,12 @@
   background: var(--color-neutral-100);
 }
 
-/* First image spans full width */
-.pdp-image-grid__item:first-child {
-  grid-column: 1 / -1;
-}
-
 .pdp-image-grid__item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   aspect-ratio: 4 / 5;
-}
-
-.pdp-image-grid__item:first-child img {
-  aspect-ratio: 2 / 3;
 }
 
 /* ── Product Header ── */

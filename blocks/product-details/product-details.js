@@ -522,25 +522,37 @@ export default async function decorate(block) {
     }).forEach((el) => container.appendChild(el));
   };
 
+  // State for colour-filtered gallery
+  let allProductImages = [];
+  let colourOptionId = null;
+
   // Build 2-column desktop image grid (replaces dropin carousel in left column)
-  const buildDesktopImageGrid = (images) => {
+  const buildDesktopImageGrid = (images, colourLabel = null) => {
     if (!images?.length) return;
+
+    let filtered = images.filter((img) => !img.roles?.includes('hide_from_pdp'));
+
+    // Filter by colour name in the image URL when a colour is selected
+    if (colourLabel) {
+      const key = colourLabel.toLowerCase().trim();
+      const byColour = filtered.filter((img) => img.url?.toLowerCase().includes(key));
+      if (byColour.length > 0) filtered = byColour;
+    }
+
     $gallery.innerHTML = '';
     $gallery.classList.add('pdp-image-grid');
-    images
-      .filter((img) => !img.roles?.includes('hide_from_pdp'))
-      .forEach((img, i) => {
-        const item = document.createElement('div');
-        item.className = 'pdp-image-grid__item';
-        const picture = document.createElement('img');
-        picture.src = img.url?.replace(/^https?:/, '');
-        picture.alt = img.label || '';
-        picture.loading = i < 2 ? 'eager' : 'lazy';
-        picture.width = 600;
-        picture.height = 750;
-        item.appendChild(picture);
-        $gallery.appendChild(item);
-      });
+    filtered.forEach((img, i) => {
+      const item = document.createElement('div');
+      item.className = 'pdp-image-grid__item';
+      const picture = document.createElement('img');
+      picture.src = img.url?.replace(/^https?:/, '');
+      picture.alt = img.label || '';
+      picture.loading = i < 2 ? 'eager' : 'lazy';
+      picture.width = 600;
+      picture.height = 750;
+      item.appendChild(picture);
+      $gallery.appendChild(item);
+    });
   };
 
   // Lifecycle Events

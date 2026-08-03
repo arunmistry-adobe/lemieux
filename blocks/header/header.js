@@ -358,6 +358,20 @@ export default async function decorate(block) {
 
   navTools.append(searchFragment);
 
+  /** Dashboard */
+  const dashboard = document.createRange().createContextualFragment(`
+     <div class="dashboard-wrapper nav-tools-wrapper">
+       <button type="button" class="nav-dashboard-button" aria-label="Dashboard"></button>
+     </div>
+   `);
+
+  navTools.append(dashboard);
+
+  const dashboardButton = navTools.querySelector('.nav-dashboard-button');
+  dashboardButton.addEventListener('click', () => {
+    window.location.href = rootLink('/dashboard');
+  });
+
   const searchPanel = navTools.querySelector('.nav-search-panel');
   const searchButton = navTools.querySelector('.nav-search-button');
   const searchForm = searchPanel.querySelector('#search-bar-form');

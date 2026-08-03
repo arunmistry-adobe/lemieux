@@ -272,6 +272,16 @@
           }
         },
         {
+          "title": "LeMieux Dashboard",
+          "id": "lemieux-dashboard",
+          "model": "lemieux-dashboard",
+          "plugins": {
+            "da": {
+              "type": "key-value-block"
+            }
+          }
+        },
+        {
           "title": "Commerce Account Header",
           "id": "commerce-account-header",
           "model": "commerce-account-header",

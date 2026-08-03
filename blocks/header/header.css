@@ -46,7 +46,7 @@ header nav[aria-expanded='true'] {
   header nav {
     display: flex;
     justify-content: space-between;
-    gap: 0 32px;
+    gap: 0 24px;
     max-width: 1264px;
     padding: 0 32px;
   }
@@ -257,7 +257,7 @@ header nav .nav-sections ul>li:empty {
   header nav .nav-sections .default-content-wrapper>ul>li,
   header nav .nav-sections .nav-drop {
     border-radius: 4px;
-    padding: 0 var(--spacing-small);
+    padding: 0 var(--spacing-xsmall);
   }
 
   header nav .nav-sections .default-content-wrapper>ul>li a {
@@ -363,7 +363,7 @@ header nav .nav-tools {
   grid-area: tools;
   display: flex;
   height: 100%;
-  gap: var(--spacing-small);
+  gap: var(--spacing-xsmall);
   align-items: center;
   background: var(--background-color);
   z-index: 3;
@@ -412,6 +412,13 @@ header nav .nav-tools button.nav-wishlist-button {
 header nav .nav-tools button.nav-search-button {
   font-size: 0;
   background-image: url('../../icons/search.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+header nav .nav-tools button.nav-dashboard-button {
+  font-size: 0;
+  background-image: url('../../icons/dashboard.svg');
   background-repeat: no-repeat;
   background-position: center;
 }

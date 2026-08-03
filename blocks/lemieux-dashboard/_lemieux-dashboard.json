@@ -1,0 +1,17 @@
+{
+  "definitions": [{
+    "title": "LeMieux Dashboard",
+    "id": "lemieux-dashboard",
+    "model": "lemieux-dashboard",
+    "plugins": {
+      "da": {
+        "type": "key-value-block"
+      }
+    }
+  }],
+  "models": [{
+    "id": "lemieux-dashboard",
+    "fields": []
+  }],
+  "filters": []
+}

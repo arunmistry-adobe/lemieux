@@ -444,19 +444,12 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
-      },
-         {
-        "component": "multiselect",
-        "name": "style",
-        "label": "Style",
-        "options": [
-          {
-            "name": "Padding Top",
-            "value": "padding-top"
-          }
-        ]
       }
     ]
+  },
+  {
+    "id": "lemieux-dashboard",
+    "fields": []
   },
   {
     "id": "product-details",

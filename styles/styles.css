@@ -601,6 +601,11 @@ body.columns main {
   margin: 0 auto;
   padding: var(--spacing-large) var(--spacing-small);
   box-sizing: border-box;
+
+  /* Reset the global `main` flex gap (--spacing-xbig). Column sections sum to
+     100% (e.g. 30% + 70%) and use their own padding for spacing; any flex gap
+     tips the total past 100% and wraps the last column onto its own row. */
+  gap: 0;
 }
 
 body.columns main > .section {

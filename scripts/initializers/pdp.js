@@ -118,6 +118,7 @@ await initializeDropin(async () => {
     getProductData(true),
     fetchPlaceholders('placeholders/pdp.json'),
   ]);
+  console.log('[PDP INIT DEBUG] fetchProductData result:', JSON.stringify({ sku: product?.sku, name: product?.name, imageCount: product?.images?.length }));
 
   const langDefinitions = {
     default: {

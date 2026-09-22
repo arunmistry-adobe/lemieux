@@ -547,6 +547,7 @@ export default async function decorate(block) {
 
   // Lifecycle Events
   events.on('pdp/data', (data) => {
+    console.log('[PDP DEBUG] pdp/data received:', JSON.stringify({ sku: data?.sku, name: data?.name, imageCount: data?.images?.length, inStock: data?.inStock }));
     isOutOfStock = data?.inStock === false;
     addToCart.setProps((prev) => ({ ...prev, disabled: isOutOfStock }));
 

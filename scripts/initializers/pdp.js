@@ -112,11 +112,13 @@ await initializeDropin(async () => {
   const origFetch = window.fetch;
   window.fetch = async (url, opts) => {
     const res = await origFetch(url, opts);
-    if (String(url).includes('commerce.adobe.com')) {
+    const urlStr = String(url);
+    if (urlStr.includes('commerce.adobe.com') && urlStr.includes('skus')) {
       const clone = res.clone();
       clone.json().then(body => {
-        console.log('[PDP FETCH DEBUG] CS request URL:', String(url).substring(0, 200));
-        console.log('[PDP FETCH DEBUG] CS response:', JSON.stringify(body).substring(0, 500));
+        console.log('[PDP FETCH DEBUG] Full URL:', urlStr);
+        console.log('[PDP FETCH DEBUG] Request headers:', JSON.stringify(opts?.headers || {}));
+        console.log('[PDP FETCH DEBUG] CS response:', JSON.stringify(body).substring(0, 300));
       }).catch(() => {});
     }
     return res;

@@ -108,32 +108,10 @@ await initializeDropin(async () => {
     return loadErrorPage();
   }
 
-  // Intercept fetch to debug CS GraphQL calls
-  const origFetch = window.fetch;
-  window.fetch = async (url, opts) => {
-    const res = await origFetch(url, opts);
-    const urlStr = String(url);
-    if (urlStr.includes('commerce.adobe.com') && urlStr.includes('skus')) {
-      const clone = res.clone();
-      clone.json().then(body => {
-        console.log('[PDP FETCH DEBUG] Full URL:', urlStr);
-        console.log('[PDP FETCH DEBUG] Request headers:', JSON.stringify(opts?.headers || {}));
-        console.log('[PDP FETCH DEBUG] CS response:', JSON.stringify(body).substring(0, 300));
-      }).catch(() => {});
-    }
-    return res;
-  };
-
   const getProductData = async (skipTransform) => {
-    try {
-      const data = await fetchProductData(sku, { optionsUIDs, skipTransform })
-        .then(preloadImageMiddleware);
-      console.log('[PDP INIT DEBUG] fetchProductData raw result:', data);
-      return data;
-    } catch (err) {
-      console.error('[PDP INIT DEBUG] fetchProductData threw:', err);
-      return null;
-    }
+    const data = await fetchProductData(sku, { optionsUIDs, skipTransform })
+      .then(preloadImageMiddleware);
+    return data;
   };
 
   const [product, labels] = await Promise.all([

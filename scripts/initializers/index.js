@@ -27,7 +27,11 @@ const setAuthHeaders = (state) => {
 };
 
 const setCustomerGroupHeader = (customerGroupId) => {
-  CS_FETCH_GRAPHQL.setFetchGraphQlHeader('Magento-Customer-Group', customerGroupId);
+  if (customerGroupId) {
+    CS_FETCH_GRAPHQL.setFetchGraphQlHeader('Magento-Customer-Group', customerGroupId);
+  } else {
+    CS_FETCH_GRAPHQL.removeFetchGraphQlHeader('Magento-Customer-Group');
+  }
 };
 
 const setAdobeCommerceOptimizerHeader = (adobeCommerceOptimizer) => {

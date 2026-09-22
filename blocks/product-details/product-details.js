@@ -555,6 +555,13 @@ export default async function decorate(block) {
       allProductImages = data.images;
       buildDesktopImageGrid(allProductImages);
     }
+
+    // Render WishlistToggle now that product data is available (may have been null on first render)
+    if (data?.sku && $wishlistToggleBtn && !$wishlistToggleBtn.dataset.wishlistRendered) {
+      $wishlistToggleBtn.dataset.wishlistRendered = 'true';
+      wishlistRender.render(WishlistToggle, { product: data })($wishlistToggleBtn);
+    }
+
     setTimeout(reorderSwatchFields, 150);
   }, { eager: true });
 

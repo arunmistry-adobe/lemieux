@@ -27,8 +27,7 @@ const setAuthHeaders = (state) => {
 };
 
 const setCustomerGroupHeader = (customerGroupId) => {
-  const isAuthenticated = events.lastPayload('authenticated');
-  if (isAuthenticated && customerGroupId) {
+  if (getUserTokenCookie() && customerGroupId) {
     CS_FETCH_GRAPHQL.setFetchGraphQlHeader('Magento-Customer-Group', customerGroupId);
   } else {
     CS_FETCH_GRAPHQL.removeFetchGraphQlHeader('Magento-Customer-Group');

@@ -416,9 +416,10 @@ export default async function decorate(block) {
       : null,
 
     // Wishlist button - WishlistToggle Container
-    wishlistRender.render(WishlistToggle, {
-      product,
-    })($wishlistToggleBtn),
+    // Guard against null product (data may not be ready yet; updated via pdp/data)
+    product
+      ? wishlistRender.render(WishlistToggle, { product })($wishlistToggleBtn)
+      : Promise.resolve(),
   ]);
 
   // Configuration – Button - Add to Cart

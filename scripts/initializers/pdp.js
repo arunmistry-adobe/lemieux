@@ -109,16 +109,21 @@ await initializeDropin(async () => {
   }
 
   const getProductData = async (skipTransform) => {
-    const data = await fetchProductData(sku, { optionsUIDs, skipTransform })
-      .then(preloadImageMiddleware);
-    return data;
+    try {
+      const data = await fetchProductData(sku, { optionsUIDs, skipTransform })
+        .then(preloadImageMiddleware);
+      console.log('[PDP INIT DEBUG] fetchProductData raw result:', data);
+      return data;
+    } catch (err) {
+      console.error('[PDP INIT DEBUG] fetchProductData threw:', err);
+      return null;
+    }
   };
 
   const [product, labels] = await Promise.all([
     getProductData(true),
     fetchPlaceholders('placeholders/pdp.json'),
   ]);
-  console.log('[PDP INIT DEBUG] fetchProductData result:', JSON.stringify({ sku: product?.sku, name: product?.name, imageCount: product?.images?.length }));
 
   const langDefinitions = {
     default: {
